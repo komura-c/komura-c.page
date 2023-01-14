@@ -3,7 +3,7 @@
     <div class="profile-card fade">
       <div class="profile-card__img-wrapper">
         <img
-          src="~assets/images/self.jpg"
+          src="/self.jpg"
           alt="komura-c"
           class="profile-card__img"
           loading="lazy"
@@ -39,9 +39,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="social-buttons__link"
-            ><img
-              :src="require(`~/assets/images/${socialButton.img}`)"
-              :alt="socialButton.name"
+            ><img :src="`/${socialButton.img}`" :alt="socialButton.name"
           /></a>
         </div>
       </div>

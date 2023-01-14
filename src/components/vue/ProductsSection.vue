@@ -13,11 +13,7 @@
           rel="noopener noreferrer"
           class="product-card"
         >
-          <img
-            :src="require(`~/assets/images/${product.img}`)"
-            class="product-card__img"
-            alt=""
-          />
+          <img :src="`/${product.img}`" class="product-card__img" alt="" />
           <h3 class="product-card__title">{{ product.name }}</h3>
           <p class="product-card__description">{{ product.description }}</p>
           <div class="product-card__tech-list">
@@ -55,7 +51,7 @@ const productList = [
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/_mixins.scss";
+@import "../../styles/mixins.scss";
 
 .products {
   display: flex;

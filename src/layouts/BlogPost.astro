@@ -2,6 +2,7 @@
 import BaseHead from "../components/astro/BaseHead.astro";
 import Header from "../components/astro/Header.astro";
 import Footer from "../components/astro/Footer.astro";
+import "../styles/blog.css";
 
 export interface Props {
   content: {
@@ -18,7 +19,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="ja">
   <head>
     <BaseHead title={title} description={description} />
     <style>

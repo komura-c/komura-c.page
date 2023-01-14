@@ -2,10 +2,8 @@
 import BaseHead from "../components/astro/BaseHead.astro";
 import Header from "../components/astro/Header.astro";
 import Footer from "../components/astro/Footer.astro";
-// import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
-
-const SITE_TITLE = "komura-c.github.io";
-const SITE_DESCRIPTION = "komura-cのポートフォリオ・ブログサイトです。";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import "../styles/blog.css";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(

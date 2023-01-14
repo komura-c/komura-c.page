@@ -1,14 +1,14 @@
 <template>
   <div class="scroll-guide">
     <p class="scroll-guide__text">Scroll</p>
-    <nuxt-link
+    <a
+      href="#"
       v-scroll-to="'#products'"
-      to
       class="scroll-guide__anchor"
       aria-label="スクロールする"
     >
       <span class="scroll-guide__icon"></span
-    ></nuxt-link>
+    ></a>
   </div>
 </template>
 

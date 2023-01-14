@@ -7,13 +7,9 @@
           :key="navItem.anchor"
           class="nav-list__item"
         >
-          <nuxt-link
-            v-scroll-to="'#' + navItem.anchor"
-            to
-            class="nav-list__link"
-          >
+          <a href="#" v-scroll-to="'#' + navItem.anchor" class="nav-list__link">
             {{ navItem.name }}
-          </nuxt-link>
+          </a>
         </li>
       </ul>
     </div>

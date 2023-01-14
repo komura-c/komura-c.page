@@ -67,7 +67,7 @@ const postList = [
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/_mixins.scss";
+@import "../../styles/mixins.scss";
 
 .posts {
   display: flex;

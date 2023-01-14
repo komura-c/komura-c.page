@@ -7,6 +7,6 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
-  // site: "https://example.com",
-  integrations: [mdx(), sitemap(), vue()],
+  site: "https://komura-c.github.io",
+  integrations: [mdx(), sitemap(), vue({ appEntrypoint: "/src/pages/_app" })],
 });

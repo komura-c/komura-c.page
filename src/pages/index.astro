@@ -2,10 +2,14 @@
 import BaseHead from "../components/astro/BaseHead.astro";
 import Header from "../components/astro/Header.astro";
 import Footer from "../components/astro/Footer.astro";
-// import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
-const SITE_TITLE = "komura-c.github.io";
-const SITE_DESCRIPTION = "komura-cのポートフォリオ・ブログサイトです。";
+import ProfileSection from "../components/vue/ProfileSection.vue";
+import TopHeader from "../components/vue/TopHeader.vue";
+import ScrollGuide from "../components/vue/ScrollGuide.vue";
+import ProductsSection from "../components/vue/ProductsSection.vue";
+import PostsSection from "../components/vue/PostsSection.vue";
+import MusicsSection from "../components/vue/MusicsSection.vue";
 ---
 
 <!DOCTYPE html>
@@ -15,6 +19,12 @@ const SITE_DESCRIPTION = "komura-cのポートフォリオ・ブログサイト�
   </head>
   <body>
     <Header title={SITE_TITLE} />
+    <ProfileSection />
+    <TopHeader client:load />
+    <ScrollGuide client:load />
+    <ProductsSection />
+    <PostsSection />
+    <MusicsSection />
     <Footer />
   </body>
 </html>
