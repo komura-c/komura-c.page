@@ -1,0 +1,20 @@
+---
+import BaseHead from "../components/astro/BaseHead.astro";
+import Header from "../components/astro/Header.astro";
+import Footer from "../components/astro/Footer.astro";
+// import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+
+const SITE_TITLE = "komura-c.github.io";
+const SITE_DESCRIPTION = "komura-cのポートフォリオ・ブログサイトです。";
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <Footer />
+  </body>
+</html>
