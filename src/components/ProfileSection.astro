@@ -1,29 +1,37 @@
 ---
+import { Image } from "@astrojs/image/components";
+import SelfImage from "../assets/self.jpg";
+import TwitterIcon from "../assets/twitter-icon.svg";
+import GithubIcon from "../assets/github-icon.svg";
+import HatenaIcon from "../assets/hatena-icon.svg";
+import QiitaIcon from "../assets/qiita-icon.png";
+import SoundCloudIcon from "../assets/soundcloud-icon.png";
+
 const socialButtons = [
   {
     name: "twitter",
     URL: "https://twitter.com/komura_c",
-    img: "twitter-icon.svg",
+    imgSrc: TwitterIcon,
   },
   {
     name: "github",
     URL: "https://github.com/komura-c",
-    img: "github-icon.svg",
+    imgSrc: GithubIcon,
   },
   {
     name: "hatena",
     URL: "https://komura-c.hatenablog.com/",
-    img: "hatena-icon.svg",
+    imgSrc: HatenaIcon,
   },
   {
     name: "qiita",
     URL: "https://qiita.com/komura_c",
-    img: "qiita-icon.png",
+    imgSrc: QiitaIcon,
   },
   {
     name: "soundcloud",
     URL: "https://soundcloud.com/komura_c",
-    img: "soundcloud-icon.png",
+    imgSrc: SoundCloudIcon,
   },
 ];
 ---
@@ -31,11 +39,13 @@ const socialButtons = [
 <div id="top" class="bg-top">
   <div class="profile-card fade">
     <div class="profile-card__img-wrapper">
-      <img
-        src="/self.jpg"
+      <Image
+        src={SelfImage}
+        width={280}
+        aspectRatio="1:1"
+        format="webm"
         alt="komura-c"
         class="profile-card__img"
-        loading="lazy"
       />
     </div>
     <div class="profile-card__info">
@@ -67,7 +77,13 @@ const socialButtons = [
               rel="noopener noreferrer"
               class="social-buttons__link"
             >
-              <img src={`/${socialButton.img}`} alt={socialButton.name} />
+              <Image
+                src={socialButton.imgSrc}
+                width={80}
+                aspectRatio="1:1"
+                format="webm"
+                alt={socialButton.name}
+              />
             </a>
           ))
         }

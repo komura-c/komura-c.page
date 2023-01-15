@@ -1,14 +1,18 @@
 ---
+import { Image } from "@astrojs/image/components";
+import MusilImage from "../assets/musil.png";
+import MusicWavesImage from "../assets/music-waves.jpg";
+
 const productList = [
   {
-    img: "musil.png",
+    imgSrc: MusilImage,
     name: "MusiL",
     description: "DTMや作曲をしている人が気軽に記事を投稿できるサービス",
     tech: ["Angular", "Firebase", "Algolia", "Quill Editor"],
     URL: "https://musil.place/",
   },
   {
-    img: "music-waves.jpg",
+    imgSrc: MusicWavesImage,
     name: "Music Waves Visualizer",
     description: "画像と音楽を読み込んで波形動画を生成するサイト",
     tech: ["Web Audio API", "ffmpeg.wasm", "Next.js"],
@@ -31,7 +35,14 @@ const productList = [
             rel="noopener noreferrer"
             class="product-card"
           >
-            <img src={`/${product.img}`} class="product-card__img" alt="" />
+            <Image
+              src={product.imgSrc}
+              width={866}
+              aspectRatio="433:200"
+              format="webp"
+              class="product-card__img"
+              alt=""
+            />
             <h3 class="product-card__title">{product.name}</h3>
             <p class="product-card__description">{product.description}</p>
             <div class="product-card__tech-list">
