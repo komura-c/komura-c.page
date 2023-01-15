@@ -11,11 +11,7 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const {
-  title,
-  description,
-  image = "../assets/placeholder-social.jpg",
-} = Astro.props;
+const { title, description, image = "" } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -45,3 +41,19 @@ const {
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Google tag (gtag.js) -->
+<script
+  async
+  src={`https://www.googletagmanager.com/gtag/js?id=${
+    import.meta.env.VITE_GA_ID
+  }`}
+></script>
+<script lang="js">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", import.meta.env.VITE_GA_ID);
+</script>

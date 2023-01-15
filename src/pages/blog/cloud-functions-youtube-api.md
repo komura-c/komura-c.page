@@ -5,9 +5,9 @@ description: "CloudFunctionsからYouTubeAPIで特定チャンネル動画を取
 tags: "CloudFunctions"
 pubDate: "2020-09-28 00:00:00 +0900"
 heroImage: ""
-
-created_at: "2020-09-28 00:00:00 +0900"
-updated_at: "2020-09-28 00:00:00 +0900"
+draft: false
+createdDate: "2020-09-28 00:00:00 +0900"
+updatedDate: "2020-09-28 00:00:00 +0900"
 ---
 
 先日9/27に行われた[CAMPのハッカソン](https://to.camp/lesson?v=vtriUBb2KPcOpCUAtljK)にてCloudFunctionsでYouTubeAPIを使った実装をしたので、知見を共有します。

@@ -22,14 +22,32 @@ const {
 <html lang="ja">
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
+    <style lang="scss">
+      .article {
+        margin: 12px auto;
+        max-width: 910px;
+        padding: 16px;
+
+        .title {
+          font-size: 28px;
+        }
+
+        .pub-date {
+          font-size: 14px;
+        }
+
+        .updated-date {
+          font-size: 14px;
+
+          &::before {
+            content: "/";
+          }
+        }
+
+        hr {
+          border-top: 1px solid #ddd;
+          margin: 16px 0;
+        }
       }
     </style>
   </head>
@@ -37,15 +55,35 @@ const {
   <body>
     <BlogHeader />
     <main>
-      <article>
+      <article class="article">
         {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
         <h1 class="title">{title}</h1>
-        {pubDate && <time>{pubDate}</time>}
+        {
+          pubDate && (
+            <span class="pub-date">
+              <time>
+                {new Date(pubDate).toLocaleDateString("ja-jp", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </time>
+              作成
+            </span>
+          )
+        }
         {
           updatedDate && (
-            <div>
-              Last updated on <time>{updatedDate}</time>
-            </div>
+            <span class="updated-date">
+              <time>
+                {new Date(updatedDate).toLocaleDateString("ja-jp", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </time>{" "}
+              更新
+            </span>
           )
         }
         <hr />

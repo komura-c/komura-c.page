@@ -5,9 +5,9 @@ description: "Github-Flowと自分がよく使うGithubコマンド"
 tags: "GitHub"
 pubDate: "2020-07-02 23:39:35 +0900"
 heroImage: ""
-
-created_at: "2020-07-02 23:39:36 +0900"
-updated_at: "2020-07-05 01:01:44 +0900"
+draft: false
+createdDate: "2020-07-02 23:39:36 +0900"
+updatedDate: "2020-07-05 01:01:44 +0900"
 ---
 
 ## Github-Flow

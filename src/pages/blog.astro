@@ -17,35 +17,43 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
 <html lang="ja">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      ul {
-        list-style-type: none;
-        padding: unset;
-      }
-      ul li {
-        display: flex;
-      }
-      ul li time {
-        flex: 0 0 130px;
-        font-style: italic;
-        color: #595959;
-      }
-      ul li a:visited {
-        color: #8e32dc;
+    <style lang="scss">
+      .section {
+        margin: 0 auto;
+        max-width: 910px;
+        padding: 8px 16px;
+        ul {
+          padding: 0;
+          list-style-type: none;
+
+          li {
+            display: flex;
+            margin: 8px 0;
+          }
+
+          time {
+            flex: 0 0 130px;
+            color: #595959;
+          }
+
+          a:visited {
+            color: #8e32dc;
+          }
+        }
       }
     </style>
   </head>
   <body>
     <BlogHeader />
     <main>
-      <section>
+      <section class="section">
         <ul>
           {
             posts.map((post) => (
               <li>
                 <time datetime={post.frontmatter.pubDate}>
                   {new Date(post.frontmatter.pubDate).toLocaleDateString(
-                    "en-us",
+                    "ja-jp",
                     {
                       year: "numeric",
                       month: "short",

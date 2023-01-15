@@ -1,9 +1,4 @@
 body {
-  font-family: Verdana, sans-serif;
-  margin: auto;
-  padding: 20px;
-  max-width: 65ch;
-  text-align: left;
   background-color: #fff;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -17,14 +12,17 @@ h4,
 h5,
 h6,
 strong,
-b {
-  color: #222;
+b,
+p {
+  color: #333;
+  margin: 12px 0;
 }
 a {
   color: #3273dc;
-}
-nav a {
-  margin-right: 10px;
+  &:hover {
+    opacity: 0.6;
+    transition: all 0.4s ease;
+  }
 }
 textarea {
   width: 100%;

@@ -5,9 +5,9 @@ description: "Angularで動的に生成した記事の目次（TableOfContents�
 tags: "Angular"
 pubDate: "2020-08-19 00:00:00 +0900"
 heroImage: ""
-
-created_at: "2020-08-19 00:00:00 +0900"
-updated_at: "2020-08-19 00:00:00 +0900"
+draft: false
+createdDate: "2020-08-19 00:00:00 +0900"
+updatedDate: "2020-08-19 00:00:00 +0900"
 ---
 
 ## はじめに

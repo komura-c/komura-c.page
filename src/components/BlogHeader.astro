@@ -3,21 +3,47 @@ import AstroLink from "./AstroLink.astro";
 import { SITE_TITLE } from "../config";
 ---
 
-<header>
-  <h2>
-    {SITE_TITLE}
-  </h2>
-  <nav>
-    <AstroLink href="/">Home</AstroLink>
-    <AstroLink href="/blog">Blog</AstroLink>
-  </nav>
+<header class="blog-header">
+  <div class="blog-header__menu">
+    <AstroLink href="/blog">
+      <h2 class="site-title">
+        {SITE_TITLE}/blog
+      </h2>
+    </AstroLink>
+    <nav class="nav">
+      <AstroLink href="/" class="nav__item">Portfolio</AstroLink>
+      <AstroLink href="/blog" class="nav__item">Blog</AstroLink>
+    </nav>
+  </div>
 </header>
 
-<style>
-  header {
-    margin: 0em 0 2em;
-  }
-  h2 {
-    margin: 0.5em 0;
+<style lang="scss">
+  .blog-header {
+    margin: 0;
+    padding: 8px 20px;
+    background-color: #424242;
+
+    &__menu {
+      margin: 0 auto;
+      max-width: 880px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .nav {
+      &__item {
+        color: #fff;
+        margin-left: 24px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
   }
 </style>

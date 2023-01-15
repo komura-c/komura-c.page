@@ -5,9 +5,9 @@ description: "CloudFunctionsから上限までツイート保存"
 tags: "CloudFunctions"
 pubDate: "2020-09-29 00:00:00 +0900"
 heroImage: ""
-
-created_at: "2020-09-29 00:00:00 +0900"
-updated_at: "2020-09-29 00:00:00 +0900"
+draft: false
+createdDate: "2020-09-29 00:00:00 +0900"
+updatedDate: "2020-09-29 00:00:00 +0900"
 ---
 
 [CloudFunctionsからYouTubeAPIで特定チャンネル動画を取得する](https://to.camp/lesson?v=wwWte5geeyIB0VHMuWx3)のハッカソンでTwitterAPIの実装も行ったので共有します。
