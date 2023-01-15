@@ -1,0 +1,35 @@
+<lazy-load>
+  <slot name="lazyload" />
+</lazy-load>
+
+<script>
+  class LazyLoad extends HTMLElement {
+    constructor() {
+      super();
+
+      const lazyLoadElement = this;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            observer.disconnect();
+            if (!entry.target) return;
+            const dataSrc = entry.target.getAttribute("data-src");
+            if (!dataSrc) return;
+            entry.target.setAttribute("src", dataSrc);
+          }
+        },
+        {
+          rootMargin: "20px",
+        }
+      );
+
+      if (lazyLoadElement && lazyLoadElement.firstElementChild) {
+        observer.observe(lazyLoadElement.firstElementChild);
+      }
+    }
+  }
+
+  customElements.define("lazy-load", LazyLoad);
+</script>
