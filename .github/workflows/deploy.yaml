@@ -24,7 +24,8 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm ci
       - run: npm run build
-        env: VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
+        env:
+          VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
