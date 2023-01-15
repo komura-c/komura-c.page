@@ -65,7 +65,10 @@ const postList = [
         ))
       }
     </div>
-    <AstroLink href="/blog">Blog</AstroLink>
+    <!-- TODO: ブログを見せられるようになったら追加する -->
+    <div class="more">
+      <AstroLink href="/blog">もっと見る</AstroLink>
+    </div>
   </div>
 </div>
 
@@ -104,5 +107,9 @@ const postList = [
       font-size: 14px;
       letter-spacing: 1.2px;
     }
+  }
+
+  .more {
+    text-align: center;
   }
 </style>

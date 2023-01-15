@@ -7,7 +7,7 @@ import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://komura-c.github.io/komura-c.github.io.v2",
+  site: "https://komura-c.github.io",
   integrations: [
     mdx(),
     sitemap(),
