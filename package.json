@@ -11,13 +11,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/image": "^0.12.1",
     "@astrojs/mdx": "^0.14.0",
     "@astrojs/rss": "^2.0.0",
     "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/vue": "^1.2.2",
     "astro": "^1.9.2",
     "sass": "^1.57.1",
-    "vue": "^3.2.45",
-    "vue-scrollto": "^2.20.0"
+    "sharp": "^0.31.3"
   }
 }

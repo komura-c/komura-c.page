@@ -1,27 +1,6 @@
-<template>
-  <div id="posts">
-    <div class="container">
-      <div class="heading">
-        <h2 class="heading__title">Posts</h2>
-      </div>
-      <div class="posts">
-        <a
-          v-for="post in postList"
-          :key="post.title"
-          :href="post.URL"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="post-card"
-        >
-          <h3 class="post-card__title">{{ post.title }}</h3>
-          <p class="post-card__date">{{ post.updatedAt }}</p>
-        </a>
-      </div>
-    </div>
-  </div>
-</template>
+---
+import AstroLink from "./AstroLink.astro";
 
-<script setup lang="ts">
 const postList = [
   {
     title: "AngularのメタフレームワークAnalogを試す",
@@ -64,42 +43,66 @@ const postList = [
     updatedAt: "2020-08-08",
   },
 ];
-</script>
+---
 
-<style lang="scss" scoped>
-@import "../../styles/mixins.scss";
+<div id="posts">
+  <div class="container">
+    <div class="heading">
+      <h2 class="heading__title">Blog</h2>
+    </div>
+    <div class="posts">
+      {
+        postList.map((post) => (
+          <a
+            href={post.URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="post-card"
+          >
+            <h3 class="post-card__title">{post.title}</h3>
+            <p class="post-card__date">{post.updatedAt}</p>
+          </a>
+        ))
+      }
+    </div>
+    <AstroLink href="/blog">Blog</AstroLink>
+  </div>
+</div>
 
-.posts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-}
+<style lang="scss">
+  @import "../styles/mixins.scss";
 
-.post-card {
-  color: #333;
-  background-color: #fff;
-  box-shadow: 0 18px 45px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  width: 48%;
-  margin-bottom: 24px;
-  padding: 24px;
-  transition: 0.3s;
-  @include tab {
-    width: 100%;
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
-  &:hover {
-    box-shadow: 0 18px 45px 0 rgba(0, 0, 0, 0.24);
+
+  .post-card {
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 18px 45px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    width: 48%;
+    margin-bottom: 24px;
+    padding: 24px;
+    transition: 0.3s;
+    @include tab {
+      width: 100%;
+    }
+    &:hover {
+      box-shadow: 0 18px 45px 0 rgba(0, 0, 0, 0.24);
+    }
+    &__title {
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 1.2px;
+      margin-bottom: 12px;
+    }
+    &__date {
+      font-size: 14px;
+      letter-spacing: 1.2px;
+    }
   }
-  &__title {
-    font-weight: bold;
-    font-size: 16px;
-    letter-spacing: 1.2px;
-    margin-bottom: 12px;
-  }
-  &__date {
-    font-size: 14px;
-    letter-spacing: 1.2px;
-  }
-}
 </style>

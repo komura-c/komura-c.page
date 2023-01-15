@@ -1,15 +1,16 @@
 ---
-import BaseHead from "../components/astro/BaseHead.astro";
-import Header from "../components/astro/Header.astro";
-import Footer from "../components/astro/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
-import ProfileSection from "../components/vue/ProfileSection.vue";
-import TopHeader from "../components/vue/TopHeader.vue";
-import ScrollGuide from "../components/vue/ScrollGuide.vue";
-import ProductsSection from "../components/vue/ProductsSection.vue";
-import PostsSection from "../components/vue/PostsSection.vue";
-import MusicsSection from "../components/vue/MusicsSection.vue";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+import ProfileSection from "../components/ProfileSection.astro";
+import TopHeader from "../components/TopHeader.astro";
+import ScrollGuide from "../components/ScrollGuide.astro";
+import ProductsSection from "../components/ProductsSection.astro";
+import PostsSection from "../components/PostsSection.astro";
+import MusicsSection from "../components/MusicsSection.astro";
 ---
 
 <!DOCTYPE html>
@@ -18,10 +19,9 @@ import MusicsSection from "../components/vue/MusicsSection.vue";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <Header title={SITE_TITLE} />
     <ProfileSection />
-    <TopHeader client:load />
-    <ScrollGuide client:load />
+    <TopHeader />
+    <ScrollGuide />
     <ProductsSection />
     <PostsSection />
     <MusicsSection />

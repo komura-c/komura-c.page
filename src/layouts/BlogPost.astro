@@ -1,8 +1,8 @@
 ---
-import BaseHead from "../components/astro/BaseHead.astro";
-import Header from "../components/astro/Header.astro";
-import Footer from "../components/astro/Footer.astro";
-import "../styles/blog.css";
+import BaseHead from "../components/BaseHead.astro";
+import BlogHeader from "../components/BlogHeader.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/blog.scss";
 
 export interface Props {
   content: {
@@ -35,7 +35,7 @@ const {
   </head>
 
   <body>
-    <Header />
+    <BlogHeader />
     <main>
       <article>
         {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
