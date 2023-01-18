@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import { SITE_TITLE } from "../config";
 import { blogFetcher } from "../lib/BlogFetcher";
 import "../styles/blog.scss";
 import type { Article } from "../types/Article";
@@ -57,7 +57,7 @@ allPosts.sort(
 
           li {
             display: flex;
-            margin: 8px 0;
+            margin: 12px 0;
           }
 
           time {
@@ -90,11 +90,16 @@ allPosts.sort(
                   })}
                 </time>
                 {post.isMySite ? (
-                  <a href={post.url}>{post.title}</a>
+                  <a href={`${post.url}/`}>{post.title}</a>
                 ) : (
                   <a href={post.url} target="_blank" rel="noopener">
                     {post.title}
-                    <img src={ExternalLinkIcon} alt="外部リンク" />
+                    <img
+                      width="16px"
+                      height="16px"
+                      src={ExternalLinkIcon}
+                      alt="外部リンク"
+                    />
                   </a>
                 )}
               </li>
