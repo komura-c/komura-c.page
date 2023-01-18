@@ -22,7 +22,7 @@ export async function blogFetcher(url: string): Promise<Article[]> {
     return Array.from(entries).map((entry) => {
       return {
         title: entry.querySelector("title")?.textContent ?? "タイトル不明",
-        url: entry.querySelector("link")?.href ?? "URL不明",
+        url: entry.querySelector("url")?.textContent ?? "URL不明",
         pubDate: entry.querySelector("published")?.textContent ?? "公開日不明",
         isMySite: false,
       };
