@@ -15,7 +15,13 @@ export interface Props {
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage },
+  content: {
+    title,
+    description,
+    pubDate,
+    updatedDate,
+    heroImage = "../assets/self.jpg",
+  },
 } = Astro.props;
 ---
 

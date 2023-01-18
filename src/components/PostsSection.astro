@@ -1,6 +1,5 @@
 ---
-// TODO: ブログを見せられるようになったら追加する
-// import AstroLink from "./AstroLink.astro";
+import AstroLink from "./AstroLink.astro";
 
 const postList = [
   {
@@ -19,29 +18,9 @@ const postList = [
     updatedAt: "2022-11-24",
   },
   {
-    title: "AngularでWebWorkerを使ったバックグラウンドで生きるSetInterval",
-    URL: "https://komura-c.hatenablog.com/entry/2022/08/01/103853",
-    updatedAt: "2022-08-01",
-  },
-  {
     title: "ffmpeg.wasmをブラウザ上で動かしてみた",
     URL: "https://tech-blog.voicy.jp/entry/2022/07/19/101954",
     updatedAt: "2022-07-19",
-  },
-  {
-    title: "Web Speech APIの音声認識を使ってWebページを作ってみる",
-    URL: "https://tech-blog.voicy.jp/entry/2021/12/13/053054",
-    updatedAt: "2021-12-13",
-  },
-  {
-    title: "AngularでブラウザURLを扱う",
-    URL: "https://qiita.com/komura_c/items/28ffc5ba38cba5fbe9c9",
-    updatedAt: "2020-08-14",
-  },
-  {
-    title: "Angularで特定のルートにデータを持たせる",
-    URL: "https://qiita.com/komura_c/items/3540474f29c53429f8d1",
-    updatedAt: "2020-08-08",
   },
 ];
 ---
@@ -66,10 +45,9 @@ const postList = [
         ))
       }
     </div>
-    <!-- TODO: ブログを見せられるようになったら追加する -->
-    <!-- <div class="more">
-      <AstroLink href="/blog">もっと見る</AstroLink>
-    </div> -->
+    <div class="more">
+      <AstroLink href="/blog" class="more__link">ブログ一覧へ</AstroLink>
+    </div>
   </div>
 </div>
 
@@ -111,6 +89,18 @@ const postList = [
   }
 
   .more {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    &__link {
+      color: #333;
+      border-radius: 4px;
+      border: 1px solid #757575;
+      padding: 12px 24px;
+      transition: 0.3s;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
   }
 </style>

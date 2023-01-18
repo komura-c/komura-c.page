@@ -3,20 +3,49 @@ import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import { blogFetcher } from "../lib/BlogFetcher";
 import "../styles/blog.scss";
+import type { Article } from "../types/Article";
+import ExternalLinkIcon from "../assets/external-link.svg";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
-  (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
+const mySiteArticles: Article[] = (await Astro.glob("./blog/*.{md,mdx}")).map(
+  (mySitePost) => {
+    return {
+      title: mySitePost.frontmatter.title,
+      url: mySitePost.url,
+      pubDate: mySitePost.frontmatter.pubDate,
+      isMySite: true,
+    };
+  }
+);
+const myHatenaArticles = await blogFetcher(
+  "https://komura-c.hatenablog.com/rss"
+);
+const companyHatenaArticles = await blogFetcher(
+  "https://tech-blog.voicy.jp/rss/author/komura_c"
+);
+const myZennArticles = await blogFetcher("https://zenn.dev/komura_c/feed");
+const myQiitaArticles = await blogFetcher("https://qiita.com/komura_c/feed");
+const allPosts = [
+  ...mySiteArticles,
+  ...myHatenaArticles,
+  ...companyHatenaArticles,
+  ...myZennArticles,
+  ...myQiitaArticles,
+];
+allPosts.sort(
+  (a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf()
 );
 ---
 
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={`${SITE_TITLE}/blog`}
+      description="komura-cのブログです。"
+    />
     <style lang="scss">
       .section {
         margin: 0 auto;
@@ -36,8 +65,10 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
             color: #595959;
           }
 
-          a:visited {
-            color: #8e32dc;
+          a {
+            &:visited {
+              color: #8e32dc;
+            }
           }
         }
       }
@@ -49,19 +80,23 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
       <section class="section">
         <ul>
           {
-            posts.map((post) => (
+            allPosts.map((post) => (
               <li>
-                <time datetime={post.frontmatter.pubDate}>
-                  {new Date(post.frontmatter.pubDate).toLocaleDateString(
-                    "ja-jp",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    }
-                  )}
+                <time datetime={post.pubDate}>
+                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
                 </time>
-                <a href={post.url}>{post.frontmatter.title}</a>
+                {post.isMySite ? (
+                  <a href={post.url}>{post.title}</a>
+                ) : (
+                  <a href={post.url} target="_blank" rel="noopener">
+                    {post.title}
+                    <img src={ExternalLinkIcon} alt="外部リンク" />
+                  </a>
+                )}
               </li>
             ))
           }
