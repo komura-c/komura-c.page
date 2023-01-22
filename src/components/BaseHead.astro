@@ -49,11 +49,10 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID;
   GA_ID && (
     <>
       <script
-        defer
+        async
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
       />
       <script
-        defer
         set:html={`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
