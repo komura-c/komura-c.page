@@ -7,6 +7,7 @@ import { blogFetcher } from "../lib/BlogFetcher";
 import "../styles/blog.scss";
 import type { Article } from "../types/Article";
 import ExternalLinkIcon from "../assets/external-link.svg";
+import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const mySiteArticles: Article[] = (await Astro.glob("./blog/*.{md,mdx}")).map(
@@ -109,5 +110,6 @@ allPosts.sort(
       </section>
     </main>
     <Footer />
+    <GoogleAnalytics />
   </body>
 </html>
