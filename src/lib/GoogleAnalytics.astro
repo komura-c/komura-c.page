@@ -6,7 +6,7 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID;
   GA_ID && (
     <>
       <script
-        async
+        defer
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
       />
       <script
