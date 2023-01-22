@@ -41,7 +41,8 @@ const productList = [
               aspectRatio="433:200"
               format="webp"
               class="product-card__img"
-              alt=""
+              alt={product.name}
+              loading="lazy"
             />
             <h3 class="product-card__title">{product.name}</h3>
             <p class="product-card__description">{product.description}</p>
