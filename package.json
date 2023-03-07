@@ -13,11 +13,11 @@
   "dependencies": {
     "@astrojs/image": "^0.12.1",
     "@astrojs/mdx": "^0.14.0",
-    "@astrojs/rss": "^2.0.0",
-    "@astrojs/sitemap": "^1.0.0",
+    "@astrojs/rss": "^2.1.1",
+    "@astrojs/sitemap": "^1.1.0",
     "astro": "^1.9.2",
-    "jsdom": "^21.0.0",
-    "sass": "^1.57.1",
+    "jsdom": "^21.1.0",
+    "sass": "^1.58.3",
     "sharp": "^0.31.3"
   },
   "devDependencies": {
