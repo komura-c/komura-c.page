@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import Footer from "../components/Footer.astro";
+import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
 import "../styles/blog.scss";
 
 export interface Props {
@@ -91,7 +92,6 @@ const {
       </article>
     </main>
     <Footer />
-    <!-- TODO: 入れたくなったら追加する -->
-    <!-- <GoogleAnalytics /> -->
+    <GoogleAnalytics />
   </body>
 </html>
