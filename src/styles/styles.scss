@@ -1,4 +1,4 @@
-@import 'mixins';
+@use "mixins" as *;
 
 *,
 *::before,
@@ -8,7 +8,7 @@
 }
 
 html {
-  font-family: 'Source Sans', sans-serif;
+  font-family: "Source Sans", sans-serif;
 }
 
 body {
@@ -36,7 +36,7 @@ a {
     padding-bottom: 20px;
     margin-bottom: 20px;
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       bottom: 0px;

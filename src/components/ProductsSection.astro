@@ -9,14 +9,14 @@ const productList = [
     name: "MusiL",
     description: "DTMや作曲をしている人が気軽に記事を投稿できるサービス",
     tech: ["Angular", "Firebase", "Algolia", "Quill Editor"],
-    URL: "https://musil.place/",
+    URL: "https://musil.place",
   },
   {
     imgSrc: MusicWavesImage,
     name: "Music Waves Visualizer",
     description: "画像と音楽を読み込んで波形動画を生成するサイト",
     tech: ["Web Audio API", "ffmpeg.wasm", "Next.js"],
-    URL: "https://music-waves-visualizer.vercel.app/",
+    URL: "https://music-waves-visualizer.vercel.app",
   },
 ];
 ---
@@ -58,7 +58,7 @@ const productList = [
 </div>
 
 <style lang="scss">
-  @import "../styles/mixins.scss";
+  @use "../styles/mixins.scss" as mx;
 
   .products {
     display: flex;
@@ -78,7 +78,7 @@ const productList = [
     padding: 16px;
     line-height: 1.5;
     transition: 0.3s;
-    @include tab {
+    @include mx.tab {
       width: 100%;
     }
     &:hover {

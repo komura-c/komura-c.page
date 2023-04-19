@@ -3,38 +3,27 @@ import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE } from "../config";
-import { blogFetcher } from "../lib/BlogFetcher";
 import "../styles/blog.scss";
 import type { Article } from "../types/Article";
 import ExternalLinkIcon from "../assets/external-link.svg";
 import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
+import { Image } from "@astrojs/image/components";
+import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
+import AstroLink from "../components/AstroLink.astro";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
-const mySiteArticles: Article[] = (await Astro.glob("./blog/*.{md,mdx}")).map(
-  (mySitePost) => {
-    return {
-      title: mySitePost.frontmatter.title,
-      url: mySitePost.url,
-      pubDate: mySitePost.frontmatter.pubDate,
-      isMySite: true,
-    };
-  }
-);
-const myHatenaArticles = await blogFetcher(
-  "https://komura-c.hatenablog.com/rss"
-);
-const companyHatenaArticles = await blogFetcher(
-  "https://tech-blog.voicy.jp/rss/author/komura_c"
-);
-const myZennArticles = await blogFetcher("https://zenn.dev/komura_c/feed");
-const myQiitaArticles = await blogFetcher("https://qiita.com/komura_c/feed");
-const allPosts = [
-  ...mySiteArticles,
-  ...myHatenaArticles,
-  ...companyHatenaArticles,
-  ...myZennArticles,
-  ...myQiitaArticles,
-];
+const mySiteArticles: Article[] = (
+  await Astro.glob("../pages/blog/*.{md,mdx}")
+).map((mySitePost) => {
+  return {
+    title: mySitePost.frontmatter.title,
+    url: mySitePost.url,
+    pubDate: mySitePost.frontmatter.pubDate,
+    isMySite: true,
+  };
+});
+const outerPosts = await getAllOuterPosts();
+const allPosts = [...mySiteArticles, ...outerPosts];
 allPosts.sort(
   (a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf()
 );
@@ -91,14 +80,14 @@ allPosts.sort(
                   })}
                 </time>
                 {post.isMySite ? (
-                  <a href={`${post.url}/`}>{post.title}</a>
+                  <AstroLink href={post.url}>{post.title}</AstroLink>
                 ) : (
                   <a href={post.url} target="_blank" rel="noopener">
                     {post.title}
-                    <img
-                      width="16px"
-                      height="16px"
+                    <Image
                       src={ExternalLinkIcon}
+                      width={16}
+                      aspectRatio="1:1"
                       alt="外部リンク"
                     />
                   </a>
