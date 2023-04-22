@@ -11,8 +11,7 @@ import { SITE_TITLE } from "../config";
       </h2>
     </AstroLink>
     <nav class="nav">
-      <AstroLink href="/" class="nav__item">Portfolio</AstroLink>
-      <AstroLink href="/blog/" class="nav__item">Blog</AstroLink>
+      <AstroLink href="/" class="nav__item">About</AstroLink>
     </nav>
   </div>
 </header>
@@ -37,26 +36,16 @@ import { SITE_TITLE } from "../config";
       color: #fff;
       font-size: 20px;
       font-weight: bold;
-      padding: 12px;
+      padding: 16px;
       margin: 0;
 
       @include mx.sp {
-        visibility: hidden;
         font-size: 18px;
+        padding: 16px 0;
       }
     }
     .nav {
       margin-left: auto;
-
-      @include mx.sp {
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-      }
       .nav__item + .nav__item {
         margin-left: 16px;
 
@@ -71,7 +60,7 @@ import { SITE_TITLE } from "../config";
         font-weight: bold;
 
         @include mx.sp {
-          padding: 12px 24px;
+          padding: 12px;
         }
       }
     }
