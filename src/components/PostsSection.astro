@@ -10,7 +10,7 @@ const blogEntries = await getCollection("blog", ({ data }) => {
 const mySiteArticles: Article[] = blogEntries.map(({ slug, data }) => {
   return {
     title: data.title,
-    url: `/blog/${slug}`,
+    url: `/blog/${slug}/`,
     pubDate: data.pubDate,
     isMySite: true,
   };
@@ -64,7 +64,7 @@ allPosts.sort(
       }
     </div>
     <div class="more">
-      <AstroLink href="/blog" class="more__link">ブログ一覧へ</AstroLink>
+      <AstroLink href="/blog/" class="more__link">ブログ一覧へ</AstroLink>
     </div>
   </div>
 </div>
