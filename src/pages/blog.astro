@@ -1,5 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
+import Layout from "../layouts/Layout.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE } from "../config";
@@ -9,15 +9,16 @@ import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
 import { Image } from "@astrojs/image/components";
 import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
 import AstroLink from "../components/AstroLink.astro";
+import { getCollection } from "astro:content";
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const mySiteArticles: Article[] = (
-  await Astro.glob("../pages/blog/*.{md,mdx}")
-).map((mySitePost) => {
+const blogEntries = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+const mySiteArticles: Article[] = blogEntries.map(({ slug, data }) => {
   return {
-    title: mySitePost.frontmatter.title,
-    url: mySitePost.url,
-    pubDate: mySitePost.frontmatter.pubDate,
+    title: data.title,
+    url: `/blog/${slug}`,
+    pubDate: data.pubDate,
     isMySite: true,
   };
 });
@@ -28,77 +29,78 @@ allPosts.sort(
 );
 ---
 
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <BaseHead
-      title={`${SITE_TITLE}/blog`}
-      description="komura-cのブログです。"
-    />
-    <style lang="scss">
-      @use "../styles/blog.scss" as *;
-      .section {
-        margin: 0 auto;
-        max-width: 910px;
-        padding: 8px 16px;
-        ul {
-          padding: 0;
-          list-style-type: none;
+<Layout title={`${SITE_TITLE}/blog`} description="komura-cのブログです。">
+  <BlogHeader />
+  <main>
+    <section class="section">
+      <ul>
+        {
+          allPosts.map((post) => (
+            <li>
+              <time datetime={post.pubDate}>
+                {new Date(post.pubDate).toLocaleDateString("ja-jp", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </time>
+              {post.isMySite ? (
+                <AstroLink href={post.url}>{post.title}</AstroLink>
+              ) : (
+                <a href={post.url} target="_blank" rel="noopener">
+                  {post.title}
+                  <Image
+                    src={ExternalLinkIcon}
+                    width={16}
+                    aspectRatio="1:1"
+                    alt="外部リンク"
+                  />
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+  <Footer />
+  <GoogleAnalytics />
+</Layout>
 
-          li {
-            display: flex;
-            margin: 12px 0;
-          }
+<style lang="scss">
+  @use "../styles/mixins.scss" as mx;
+  .section {
+    margin: 0 auto;
+    max-width: 910px;
+    padding: 8px 16px;
+    ul {
+      padding: 0;
+      list-style-type: none;
 
-          time {
-            flex: 0 0 160px;
-            color: #595959;
-          }
+      li {
+        display: flex;
+        margin: 12px 0;
+      }
 
-          a {
-            &:visited {
-              color: #8e32dc;
-            }
-          }
+      time {
+        flex: 0 0 160px;
+        color: #595959;
+      }
+
+      @include mx.sp {
+        li {
+          flex-direction: column;
+        }
+        time {
+          flex: 1;
         }
       }
-    </style>
-  </head>
-  <body>
-    <BlogHeader />
-    <main>
-      <section class="section">
-        <ul>
-          {
-            allPosts.map((post) => (
-              <li>
-                <time datetime={post.pubDate}>
-                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </time>
-                {post.isMySite ? (
-                  <AstroLink href={post.url}>{post.title}</AstroLink>
-                ) : (
-                  <a href={post.url} target="_blank" rel="noopener">
-                    {post.title}
-                    <Image
-                      src={ExternalLinkIcon}
-                      width={16}
-                      aspectRatio="1:1"
-                      alt="外部リンク"
-                    />
-                  </a>
-                )}
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-    <GoogleAnalytics />
-  </body>
-</html>
+
+      a {
+        &:visited {
+          color: #8e32dc;
+        }
+      }
+    }
+  }
+</style>

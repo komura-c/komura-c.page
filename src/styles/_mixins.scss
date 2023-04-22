@@ -11,31 +11,3 @@ $tab: 760px;
     @content;
   }
 }
-
-@mixin light {
-  --theme-base: #fff;
-  --theme-font: #333;
-  --theme-accent: #339af0;
-  --theme-bg: #f4f4f7;
-}
-
-@mixin dark {
-  @include light();
-}
-
-:root {
-  @media (prefers-color-scheme: light) {
-    @include light();
-  }
-  @media (prefers-color-scheme: dark) {
-    @include dark();
-  }
-}
-
-.light-mode {
-  @include light();
-}
-
-.dark-mode {
-  @include dark();
-}

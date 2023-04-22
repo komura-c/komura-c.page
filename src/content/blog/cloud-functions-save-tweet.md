@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "CloudFunctionsから上限までツイート保存"
 description: "CloudFunctionsから上限までツイート保存"
 tags: "CloudFunctions"

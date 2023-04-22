@@ -1,0 +1,147 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BlogHeader from "../../components/BlogHeader.astro";
+import Footer from "../../components/Footer.astro";
+import GoogleAnalytics from "../../lib/GoogleAnalytics.astro";
+import { getCollection } from "astro:content";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  });
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+// 2. When it's time to render, you can get the entry directly from the prop
+const { entry } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage = "" } = entry.data;
+const { Content } = await entry.render();
+---
+
+<Layout title={title} description={description}>
+  <BlogHeader />
+  <main>
+    <article class="article">
+      {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+      <h1 class="title">{title}</h1>
+      {
+        pubDate && (
+          <span class="pub-date">
+            <time>
+              {new Date(pubDate).toLocaleDateString("ja-jp", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </time>
+            作成
+          </span>
+        )
+      }
+      {
+        updatedDate && (
+          <span class="updated-date">
+            <time>
+              {new Date(updatedDate).toLocaleDateString("ja-jp", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </time>
+            更新
+          </span>
+        )
+      }
+      <hr />
+      <Content />
+    </article>
+  </main>
+  <Footer />
+  <GoogleAnalytics />
+</Layout>
+
+<style lang="scss" is:global>
+  :root {
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b,
+  p {
+    color: #333;
+    margin: 12px 0;
+  }
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+  input {
+    font-size: 16px;
+  }
+  content {
+    line-height: 1.6;
+  }
+  table {
+    width: 100%;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+  pre {
+    padding: 1rem;
+  }
+  pre > code {
+    all: unset;
+  }
+  blockquote {
+    border: 1px solid #999;
+    color: #222;
+    padding: 2px 0px 2px 20px;
+    margin: 0px;
+    font-style: italic;
+  }
+
+  .article {
+    margin: 12px auto;
+    max-width: 910px;
+    padding: 16px;
+
+    .title {
+      font-size: 28px;
+    }
+
+    .pub-date {
+      font-size: 14px;
+    }
+
+    .updated-date {
+      font-size: 14px;
+
+      &::before {
+        content: "/";
+      }
+    }
+
+    hr {
+      border-top: 1px solid #ddd;
+      margin: 16px 0;
+    }
+  }
+</style>

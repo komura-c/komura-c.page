@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "Angularで動的に生成した記事の目次（TableOfContents）とスムーズスクロールを実装する"
 description: "Angularで動的に生成した記事の目次（TableOfContents）とスムーズスクロールを実装する"
 tags: "Angular"

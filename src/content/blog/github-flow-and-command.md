@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "Github-Flowと自分がよく使うGithubコマンド"
 description: "Github-Flowと自分がよく使うGithubコマンド"
 tags: "GitHub"

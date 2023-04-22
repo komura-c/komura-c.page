@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "AngularでFroalaEditorを使う"
 description: "AngularでFroalaEditorを使う"
 tags: "Angular"

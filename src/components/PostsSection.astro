@@ -2,15 +2,16 @@
 import AstroLink from "./AstroLink.astro";
 import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
 import type { Article } from "../types/Article";
+import { getCollection } from "astro:content";
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const mySiteArticles: Article[] = (
-  await Astro.glob("../pages/blog/*.{md,mdx}")
-).map((mySitePost) => {
+const blogEntries = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+const mySiteArticles: Article[] = blogEntries.map(({ slug, data }) => {
   return {
-    title: mySitePost.frontmatter.title,
-    url: mySitePost.url,
-    pubDate: mySitePost.frontmatter.pubDate,
+    title: data.title,
+    url: `/blog/${slug}`,
+    pubDate: data.pubDate,
     isMySite: true,
   };
 });
@@ -29,21 +30,36 @@ allPosts.sort(
     <div class="posts">
       {
         allPosts.slice(0, 4).map((post) => (
-          <a
-            href={post.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="post-card"
-          >
-            <h3 class="post-card__title">{post.title}</h3>
-            <p class="post-card__date">
-              {new Date(post.pubDate).toLocaleDateString("ja-jp", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </p>
-          </a>
+          <>
+            {post.isMySite ? (
+              <AstroLink href={post.url} class="post-card">
+                <h3 class="post-card__title">{post.title}</h3>
+                <p class="post-card__date">
+                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+              </AstroLink>
+            ) : (
+              <a
+                href={post.url}
+                target="_blank"
+                rel="noopener"
+                class="post-card"
+              >
+                <h3 class="post-card__title">{post.title}</h3>
+                <p class="post-card__date">
+                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+              </a>
+            )}
+          </>
         ))
       }
     </div>
