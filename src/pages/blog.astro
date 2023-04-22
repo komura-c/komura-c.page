@@ -9,15 +9,16 @@ import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
 import { Image } from "@astrojs/image/components";
 import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
 import AstroLink from "../components/AstroLink.astro";
+import { getCollection } from "astro:content";
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const mySiteArticles: Article[] = (
-  await Astro.glob("../pages/blog/*.{md,mdx}")
-).map((mySitePost) => {
+const blogEntries = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+const mySiteArticles: Article[] = blogEntries.map(({ slug, data }) => {
   return {
-    title: mySitePost.frontmatter.title,
-    url: mySitePost.url,
-    pubDate: mySitePost.frontmatter.pubDate,
+    title: data.title,
+    url: `/blog/${slug}`,
+    pubDate: data.pubDate,
     isMySite: true,
   };
 });

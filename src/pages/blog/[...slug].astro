@@ -1,22 +1,23 @@
 ---
-import Layout from "./Layout.astro";
-import BlogHeader from "../components/BlogHeader.astro";
-import Footer from "../components/Footer.astro";
-import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
-
-export interface Props {
-  content: {
-    title: string;
-    description: string;
-    pubDate?: string;
-    updatedDate?: string;
-    heroImage?: string;
-  };
+import Layout from "../../layouts/Layout.astro";
+import BlogHeader from "../../components/BlogHeader.astro";
+import Footer from "../../components/Footer.astro";
+import GoogleAnalytics from "../../lib/GoogleAnalytics.astro";
+import { getCollection } from "astro:content";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  });
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
-
-const {
-  content: { title, description, pubDate, updatedDate, heroImage = "" },
-} = Astro.props;
+// 2. When it's time to render, you can get the entry directly from the prop
+const { entry } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage = "" } = entry.data;
+const { Content } = await entry.render();
 ---
 
 <Layout title={title} description={description}>
@@ -54,14 +55,14 @@ const {
         )
       }
       <hr />
-      <slot />
+      <Content />
     </article>
   </main>
   <Footer />
   <GoogleAnalytics />
 </Layout>
 
-<style lang="scss">
+<style lang="scss" is:global>
   :root {
     background-color: #fff;
     word-wrap: break-word;

@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "CloudFunctionsからYouTubeAPIで特定チャンネル動画を取得する"
 description: "CloudFunctionsからYouTubeAPIで特定チャンネル動画を取得する"
 tags: "CloudFunctions"
