@@ -4,6 +4,7 @@ import BlogHeader from "../../components/BlogHeader.astro";
 import Footer from "../../components/Footer.astro";
 import GoogleAnalytics from "../../lib/GoogleAnalytics.astro";
 import { getCollection } from "astro:content";
+
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog", ({ data }) => {
@@ -22,7 +23,7 @@ const { Content } = await entry.render();
 
 <Layout title={title} description={description}>
   <BlogHeader />
-  <main>
+  <main class="main-container" transition:animate="slide">
     <article class="article">
       {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
       <h1 class="title">{title}</h1>
@@ -69,6 +70,11 @@ const { Content } = await entry.render();
     overflow-wrap: break-word;
     line-height: 1.5;
     color: #333;
+  }
+
+  .main-container{
+    // header分の余白
+    padding-top: 70px;
   }
 
   h1,

@@ -2,7 +2,6 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "jsx": "preserve",
-    // Replace `astro/client` with `@astrojs/image/client`
-    "types": ["@astrojs/image/client"]
+    "types": ["astro/client"]
   }
 }

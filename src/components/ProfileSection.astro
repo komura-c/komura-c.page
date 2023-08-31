@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import SelfImage from "../assets/self.jpg";
 import TwitterIcon from "../assets/twitter-icon.svg";
 import GithubIcon from "../assets/github-icon.svg";
@@ -42,7 +42,7 @@ const socialButtons = [
       <Image
         src={SelfImage}
         width={280}
-        aspectRatio="1:1"
+        height={280}
         format="webp"
         alt="komura-c"
         class="profile-card__img"
@@ -81,7 +81,7 @@ const socialButtons = [
               <Image
                 src={socialButton.imgSrc}
                 width={80}
-                aspectRatio="1:1"
+                height={80}
                 format="webp"
                 alt={socialButton.name}
               />

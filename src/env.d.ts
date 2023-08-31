@@ -1,6 +1,5 @@
 /// <reference path="../.astro/types.d.ts" />
-// Replace `astro/client` with `@astrojs/image/client`
-/// <reference types="@astrojs/image/client" />
+/// <reference types="astro/client" />
 
 interface ImportMetaEnv {
   readonly PUBLIC_GA_ID: string;

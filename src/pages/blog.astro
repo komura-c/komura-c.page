@@ -6,7 +6,7 @@ import { SITE_TITLE } from "../config";
 import type { Article } from "../types/Article";
 import ExternalLinkIcon from "../assets/external-link.svg";
 import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
 import AstroLink from "../components/AstroLink.astro";
 import { getCollection } from "astro:content";
@@ -31,7 +31,7 @@ allPosts.sort(
 
 <Layout title={`${SITE_TITLE}/blog/`} description="komura-cのブログです。">
   <BlogHeader />
-  <main>
+  <main class="main-container" transition:animate="slide">
     <section class="section">
       <ul>
         {
@@ -52,7 +52,7 @@ allPosts.sort(
                   <Image
                     src={ExternalLinkIcon}
                     width={16}
-                    aspectRatio="1:1"
+                    height={16}
                     alt="外部リンク"
                   />
                 </a>
@@ -69,6 +69,11 @@ allPosts.sort(
 
 <style lang="scss">
   @use "../styles/mixins.scss" as mx;
+  
+  .main-container{
+    // header分の余白
+    padding-top: 70px;
+  }
   .section {
     margin: 0 auto;
     max-width: 910px;
