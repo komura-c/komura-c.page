@@ -31,7 +31,7 @@ allPosts.sort(
 
 <Layout title={`${SITE_TITLE}/blog/`} description="komura-cのブログです。">
   <BlogHeader />
-  <main transition:animate="slide">
+  <main class="main-container" transition:animate="slide">
     <section class="section">
       <ul>
         {
@@ -69,6 +69,11 @@ allPosts.sort(
 
 <style lang="scss">
   @use "../styles/mixins.scss" as mx;
+  
+  .main-container{
+    // header分の余白
+    padding-top: 70px;
+  }
   .section {
     margin: 0 auto;
     max-width: 910px;
