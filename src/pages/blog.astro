@@ -10,6 +10,7 @@ import { Image } from "astro:assets";
 import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
 import AstroLink from "../components/AstroLink.astro";
 import { getCollection } from "astro:content";
+import { fade } from "astro:transitions";
 
 const blogEntries = await getCollection("blog", ({ data }) => {
   return data.draft !== true;
@@ -20,6 +21,7 @@ const mySiteArticles: Article[] = blogEntries.map(({ slug, data }) => {
     url: `/blog/${slug}/`,
     pubDate: data.pubDate,
     isMySite: true,
+    slug
   };
 });
 const outerPosts = await getAllOuterPosts();
@@ -31,22 +33,29 @@ allPosts.sort(
 
 <Layout title={`${SITE_TITLE}/blog/`} description="komura-cのブログです。">
   <BlogHeader />
-  <main class="main-container" transition:animate="slide">
+  <main class="main-container" transition:animate={fade({ duration: '0.5s' })}>
     <section class="section">
       <ul>
         {
           allPosts.map((post) => (
             <li>
-              <time datetime={post.pubDate}>
-                {new Date(post.pubDate).toLocaleDateString("ja-jp", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </time>
               {post.isMySite ? (
-                <AstroLink href={post.url}>{post.title}</AstroLink>
+                <time datetime={post.pubDate} transition:name={"blog-pub-date-" + post.slug}>
+                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </time>
+                <AstroLink href={post.url} transition:name={"blog-title-" + post.slug}>{post.title}</AstroLink>
               ) : (
+                <time datetime={post.pubDate}>
+                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </time>
                 <a href={post.url} target="_blank" rel="noopener">
                   {post.title}
                   <Image

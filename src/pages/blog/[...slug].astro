@@ -4,6 +4,7 @@ import BlogHeader from "../../components/BlogHeader.astro";
 import Footer from "../../components/Footer.astro";
 import GoogleAnalytics from "../../lib/GoogleAnalytics.astro";
 import { getCollection } from "astro:content";
+import { slide } from "astro:transitions";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -23,13 +24,13 @@ const { Content } = await entry.render();
 
 <Layout title={title} description={description}>
   <BlogHeader />
-  <main class="main-container" transition:animate="slide">
+  <main class="main-container" transition:animate={slide({ duration: '0.5s' })}>
     <article class="article">
       {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-      <h1 class="title">{title}</h1>
+      <h1 class="title" transition:name={"blog-title-" + entry.slug}>{title}</h1>
       {
         pubDate && (
-          <span class="pub-date">
+          <span class="pub-date" transition:name={"blog-pub-date-" + entry.slug}>
             <time>
               {new Date(pubDate).toLocaleDateString("ja-jp", {
                 year: "numeric",

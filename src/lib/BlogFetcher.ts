@@ -7,6 +7,7 @@ const excludeHatenaGuidList = [
   "4207112889935683885",
   "4207112889940526141",
   "4207112889940907890",
+  "820878482956325029",
 ];
 
 export async function blogFetcher(url: string): Promise<Article[]> {
@@ -25,6 +26,7 @@ export async function blogFetcher(url: string): Promise<Article[]> {
         url: entry.querySelector("url")?.textContent ?? "URL不明",
         pubDate: entry.querySelector("published")?.textContent ?? "公開日不明",
         isMySite: false,
+        slug: ""
       };
     });
   }
@@ -51,6 +53,7 @@ export async function blogFetcher(url: string): Promise<Article[]> {
       url: item.querySelector("link")?.textContent ?? "URL不明",
       pubDate: item.querySelector("pubDate")?.textContent ?? "公開日不明",
       isMySite: false,
+      slug: ""
     };
   });
 }

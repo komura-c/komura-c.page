@@ -13,6 +13,7 @@ const mySiteArticles: Article[] = blogEntries.map(({ slug, data }) => {
     url: `/blog/${slug}/`,
     pubDate: data.pubDate,
     isMySite: true,
+    slug
   };
 });
 const outerPosts = await getAllOuterPosts();

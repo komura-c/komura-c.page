@@ -3,4 +3,5 @@ export interface Article {
   url: string;
   pubDate: string;
   isMySite: boolean;
+  slug: string;
 }
