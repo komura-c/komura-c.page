@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import MusilImage from "../assets/musil.png";
 import MusicWavesImage from "../assets/music-waves.jpg";
 
@@ -38,7 +38,7 @@ const productList = [
             <Image
               src={product.imgSrc}
               width={866}
-              aspectRatio="433:200"
+              height={400}
               format="webp"
               class="product-card__img"
               alt={product.name}

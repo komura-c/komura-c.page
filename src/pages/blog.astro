@@ -6,7 +6,7 @@ import { SITE_TITLE } from "../config";
 import type { Article } from "../types/Article";
 import ExternalLinkIcon from "../assets/external-link.svg";
 import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
 import AstroLink from "../components/AstroLink.astro";
 import { getCollection } from "astro:content";
@@ -52,7 +52,7 @@ allPosts.sort(
                   <Image
                     src={ExternalLinkIcon}
                     width={16}
-                    aspectRatio="1:1"
+                    height={16}
                     alt="外部リンク"
                   />
                 </a>
