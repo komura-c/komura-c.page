@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://komura-c.github.io",
+  site: "https://komura-c.page",
   integrations: [
     sitemap(),
   ],
