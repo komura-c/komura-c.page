@@ -18,7 +18,7 @@ Astro View Transitionsという表記に惹かれました。
 試してみることにしました。
 
 ## Astro2.3からのアップデート
-まず、自分のAstroのバージョンがastro@1.9.2→2.3.0に4月に上げてから触れていなかったのでアップデートしました。
+まず、このサイトはAstroでSSGをしているのですが、Astroのバージョンがastro@1.9.2→2.3.0に4月に上げてから触れていなかったのでアップデートしました。
 astro@2.0.0からで[Content Collections](https://docs.astro.build/en/guides/content-collections/)という機能が入り、
 この移行は少し変更が多かったですが、今回は比較的少なく移行ができました。
 astroはドキュメントが充実しているので、
@@ -54,10 +54,16 @@ import { fade } from "astro:transitions";
 <time datetime={post.pubDate} transition:name={"blog-pub-date-" + post.slug}>
 ```
 すると、このWebサイトのようなアニメーションが実現できます。
+ちなみに、iOSのSafariがViewTransitionに対応していないため、[fallbackオプション](https://docs.astro.build/ja/guides/view-transitions/#%E3%83%95%E3%82%A9%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF%E3%81%AE%E5%88%B6%E5%BE%A1)で遷移アニメーションを無効にするなどの対応ができます。
+```astro
+<ViewTransitions fallback="swap">
+```
 
 ## おわりに
 このページの遷移を確認したいために、新しく記事を書こうと思って凄く雑に書いてみました。
+コードは[komura-c/komura-c.github.io](https://github.com/komura-c/komura-c.github.io)にあります。
+
 紹介しなかった機能としては、ViewTransitionsのAnimationはカスタムで作ることができて拡張性があることや、Astroでは`transition:persist`属性をタグに付与することで、ページ間でそのHTML要素の状態を維持できるなどの機能があるなどがあります。
 ViewTransitionsAPIは、まだExperimentalではありますが、MPAでもSPAのような遷移ができかなり便利なAPIなので、
-ブラウザ対応が進めば一般的に使われ、SPAを選択するケースはより少なくなっていくのかなと感じました。
+ブラウザ対応が進めば一般的に使われ、SPAのみを選択するケースはより少なくなっていくのかなと感じました。
 ここまで読んでいただきありがとうございました。
