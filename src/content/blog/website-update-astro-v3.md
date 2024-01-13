@@ -45,7 +45,7 @@ Animationをカスタムしない場合は、ビルトインで`fade`と`slide`�
 --
 import { fade } from "astro:transitions";
 --
-  <main class="main-container" transition:animate={fade({ duration: '0.5s' })}>
+  <main transition:animate={fade({ duration: '0.5s' })}>
 ```
 もうこれだけで、ページ遷移時に指定したViewTransitionのアニメーションが動いてくれます。
 ただ、ViewTransitionAPIの凄い所の1つは指定した要素をリッチに遷移させることができることです。
