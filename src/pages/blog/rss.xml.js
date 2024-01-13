@@ -9,7 +9,7 @@ export async function get() {
   return rss({
     title: BLOG_SITE_TITLE,
     description: BLOG_SITE_DESCRIPTION,
-    site: import.meta.env.SITE,
+    site: import.meta.env.SITE + '/blog/',
     items: blogEntries.map((entry) => ({
       title: entry.data.title,
       pubDate: entry.data.pubDate,
