@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_TITLE } from "../config";
+import { BLOG_SITE_TITLE, BLOG_SITE_DESCRIPTION  } from "../config";
 import type { Article } from "../types/Article";
 import ExternalLinkIcon from "../assets/external-link.svg";
 import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
@@ -31,9 +31,9 @@ allPosts.sort(
 );
 ---
 
-<Layout title={`${SITE_TITLE}/blog/`} description="komura-cのブログです。">
-  <BlogHeader />
-  <main class="main-container" transition:animate={fade({ duration: '0.5s' })}>
+<Layout title={BLOG_SITE_TITLE} description={BLOG_SITE_DESCRIPTION}>
+  <BlogHeader title={BLOG_SITE_TITLE} description={BLOG_SITE_DESCRIPTION} />
+  <main transition:animate={fade({ duration: '0.5s' })}>
     <section class="section">
       <ul>
         {
@@ -79,10 +79,6 @@ allPosts.sort(
 <style lang="scss">
   @use "../styles/mixins.scss" as mx;
   
-  .main-container{
-    // header分の余白
-    padding-top: 70px;
-  }
   .section {
     margin: 0 auto;
     max-width: 910px;

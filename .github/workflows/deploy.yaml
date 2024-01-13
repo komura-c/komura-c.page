@@ -15,10 +15,25 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
-      - name: Install, build, and upload your site
-        uses: withastro/action@v0
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-            node-version: 18
+          node-version: "18"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm ci
+      - run: npm run build
+        env:
+          PUBLIC_GA_ID: ${{ secrets.PUBLIC_GA_ID }}
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "${{ inputs.path }}/dist/"
   deploy:
     needs: build
     runs-on: ubuntu-latest
