@@ -1,32 +1,15 @@
 ---
-const navList = [
-  {
-    name: "Top",
-    anchor: "top",
-  },
-  {
-    name: "Product",
-    anchor: "products",
-  },
-  {
-    name: "Blog",
-    anchor: "posts",
-  },
-  {
-    name: "Music",
-    anchor: "musics",
-  },
-];
+const navNameList = ["Top", "Product", "Blog", "Music"];
 ---
 
 <header class="header">
   <div class="nav-bar fade">
     <ul class="nav-list">
       {
-        navList.map((navItem) => (
+        navNameList.map((navName) => (
           <li class="nav-list__item">
-            <a href={"#" + navItem.anchor} class="nav-list__link">
-              {navItem.name}
+            <a href={"#" + navName.toLowerCase()} class="nav-list__link">
+              {navName}
             </a>
           </li>
         ))
