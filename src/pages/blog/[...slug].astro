@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const newURL = new URL(Astro.url.pathname, BLOG_SITE_URL).toString();
+const newURL = new URL(Astro.url.pathname.replace('blog', 'posts'), BLOG_SITE_URL).toString();
 ---
 
 <!DOCTYPE html>
@@ -37,6 +37,7 @@ const newURL = new URL(Astro.url.pathname, BLOG_SITE_URL).toString();
 
 <script>
   import { BLOG_SITE_URL } from "../../config";
-  const newURL = new URL(Astro.url.pathname, BLOG_SITE_URL).toString();
+  const path = window.location.pathname.replace("/blog", "/posts");
+  const newURL = new URL(path, BLOG_SITE_URL).toString();
   window.location.href = newURL;
 </script>
