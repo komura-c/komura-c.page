@@ -1,2 +1,3 @@
 /blog/ https://blog.komura-c.page 301
 /blog/:id/ https://blog.komura-c.page/posts/:id 301
+/blog/rss.xml https://blog.komura-c.page/posts/rss.xml 301
