@@ -1,5 +1,7 @@
 ---
-const navNameList = ["Top", "Product", "Blog", "Music"];
+import { BLOG_SITE_URL } from "../config";
+
+const navNameList = ["Top", "Product", "Music", "Blog"];
 ---
 
 <header class="header">
@@ -8,9 +10,15 @@ const navNameList = ["Top", "Product", "Blog", "Music"];
       {
         navNameList.map((navName) => (
           <li class="nav-list__item">
-            <a href={"#" + navName.toLowerCase()} class="nav-list__link">
-              {navName}
-            </a>
+            {navName === "Blog" ? 
+              <a href={BLOG_SITE_URL} target="_blank" rel="noopener" class="nav-list__external-link">
+                {navName}
+              </a>
+            : 
+              <a href={"#" + navName.toLowerCase()} class="nav-list__link">
+                {navName}
+              </a>
+            }
           </li>
         ))
       }
@@ -56,6 +64,14 @@ const navNameList = ["Top", "Product", "Blog", "Music"];
     list-style: none;
     padding: 0;
     &__link {
+      color: #333;
+      text-decoration: none;
+      transition-duration: 0.3s;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    &__external-link {
       color: #333;
       text-decoration: none;
       transition-duration: 0.3s;

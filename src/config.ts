@@ -3,5 +3,4 @@
 
 export const SITE_TITLE = "komura-c.page";
 export const SITE_DESCRIPTION = "komura-cのポートフォリオ";
-export const BLOG_SITE_TITLE = "komura-c.log";
-export const BLOG_SITE_DESCRIPTION = "komura-cのWeb技術、音、生活のメモの備忘ログ";
+export const BLOG_SITE_URL = "https://blog.komura-c.page/";
