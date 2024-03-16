@@ -1,17 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import SelfImage from "../assets/self.jpg";
-import TwitterIcon from "../assets/twitter-icon.svg";
+import XIcon from "../assets/x-icon.svg";
 import GithubIcon from "../assets/github-icon.svg";
-import HatenaIcon from "../assets/hatena-icon.svg";
-import QiitaIcon from "../assets/qiita-icon.png";
+import ZennIcon from "../assets/zenn-icon.svg";
 import SoundCloudIcon from "../assets/soundcloud-icon.png";
 
 const socialButtons = [
   {
-    name: "twitter",
+    name: "x",
     URL: "https://twitter.com/komura_c",
-    imgSrc: TwitterIcon,
+    imgSrc: XIcon,
   },
   {
     name: "github",
@@ -19,14 +18,9 @@ const socialButtons = [
     imgSrc: GithubIcon,
   },
   {
-    name: "hatena",
-    URL: "https://komura-c.hatenablog.com",
-    imgSrc: HatenaIcon,
-  },
-  {
-    name: "qiita",
-    URL: "https://qiita.com/komura_c",
-    imgSrc: QiitaIcon,
+    name: "zenn",
+    URL: "https://zenn.dev/komura_c",
+    imgSrc: ZennIcon,
   },
   {
     name: "soundcloud",
@@ -59,7 +53,7 @@ const socialButtons = [
           <a
             href="https://twitter.com/komura_c"
             target="_blank"
-            rel="noopener noreferrer">Twitter</a
+            rel="noopener noreferrer">X</a
           >
           /
           <a
@@ -76,7 +70,7 @@ const socialButtons = [
               href={socialButton.URL}
               target="_blank"
               rel="noopener noreferrer"
-              class="social-buttons__link"
+              class={"social-buttons__link " + socialButton.name}
             >
               <Image
                 src={socialButton.imgSrc}
@@ -185,7 +179,19 @@ const socialButtons = [
       img {
         width: 100%;
         height: 100%;
+      }
+      &.x {
+        background-color: #000;
         border-radius: 50%;
+        padding: 8px;
+      }
+      &.zenn {
+        padding: 2px;
+      }
+      &.soundcloud {
+        img {
+          border-radius: 50%;
+        }
       }
     }
   }
