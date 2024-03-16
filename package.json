@@ -11,14 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/rss": "^3.0.0",
-    "@astrojs/sitemap": "^3.0.0",
-    "astro": "^3.0.3",
-    "jsdom": "^21.1.1",
-    "sass": "^1.62.0",
-    "sharp": "^0.31.3"
-  },
-  "devDependencies": {
-    "@types/jsdom": "^21.1.1"
+    "astro": "^4.5.5",
+    "sass": "^1.72.0",
+    "sharp": "^0.33.2"
   }
 }

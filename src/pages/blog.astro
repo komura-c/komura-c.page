@@ -1,116 +1,22 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import BlogHeader from "../components/BlogHeader.astro";
-import Footer from "../components/Footer.astro";
-import { BLOG_SITE_TITLE, BLOG_SITE_DESCRIPTION  } from "../config";
-import type { Article } from "../types/Article";
-import ExternalLinkIcon from "../assets/external-link.svg";
-import GoogleAnalytics from "../lib/GoogleAnalytics.astro";
-import { Image } from "astro:assets";
-import { getAllOuterPosts } from "../lib/GetAllOuterPosts";
-import AstroLink from "../components/AstroLink.astro";
-import { getCollection } from "astro:content";
-import { fade } from "astro:transitions";
-
-const blogEntries = await getCollection("blog", ({ data }) => {
-  return data.draft !== true;
-});
-const mySiteArticles: Article[] = blogEntries.map(({ slug, data }) => {
-  return {
-    title: data.title,
-    url: `/blog/${slug}/`,
-    pubDate: data.pubDate,
-    isMySite: true,
-    slug
-  };
-});
-const outerPosts = await getAllOuterPosts();
-const allPosts = [...mySiteArticles, ...outerPosts];
-allPosts.sort(
-  (a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf()
-);
+import { BLOG_SITE_URL } from "../config";
 ---
 
-<Layout title={BLOG_SITE_TITLE} description={BLOG_SITE_DESCRIPTION}>
-  <BlogHeader title={BLOG_SITE_TITLE} description={BLOG_SITE_DESCRIPTION} />
-  <main transition:animate={fade({ duration: '0.5s' })}>
-    <section class="section">
-      <ul>
-        {
-          allPosts.map((post) => (
-            <li>
-              {post.isMySite ? (
-                <time datetime={post.pubDate} transition:name={"blog-pub-date-" + post.slug}>
-                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </time>
-                <AstroLink href={post.url} transition:name={"blog-title-" + post.slug}>{post.title}</AstroLink>
-              ) : (
-                <time datetime={post.pubDate}>
-                  {new Date(post.pubDate).toLocaleDateString("ja-jp", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </time>
-                <a href={post.url} target="_blank" rel="noopener">
-                  {post.title}
-                  <Image
-                    src={ExternalLinkIcon}
-                    width={16}
-                    height={16}
-                    alt="外部リンク"
-                  />
-                </a>
-              )}
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-  </main>
-  <Footer />
-  <GoogleAnalytics />
-</Layout>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <p><a href={BLOG_SITE_URL}>{BLOG_SITE_URL}</a>に移動しました。</p>
+  </body>
+</html>
 
-<style lang="scss">
-  @use "../styles/mixins.scss" as mx;
-  
-  .section {
-    margin: 0 auto;
-    max-width: 910px;
-    padding: 8px 16px;
-    ul {
-      padding: 0;
-      list-style-type: none;
-
-      li {
-        display: flex;
-        margin: 12px 0;
-      }
-
-      time {
-        flex: 0 0 160px;
-        color: #595959;
-      }
-
-      @include mx.sp {
-        li {
-          flex-direction: column;
-        }
-        time {
-          flex: 1;
-        }
-      }
-
-      a {
-        &:visited {
-          color: #8e32dc;
-        }
-      }
-    }
-  }
-</style>
+<script>
+  import { BLOG_SITE_URL } from "../config";
+  window.location.href = BLOG_SITE_URL;
+</script>

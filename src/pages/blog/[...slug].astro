@@ -1,155 +1,43 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import BlogHeader from "../../components/BlogHeader.astro";
-import Footer from "../../components/Footer.astro";
-import GoogleAnalytics from "../../lib/GoogleAnalytics.astro";
-import { getCollection } from "astro:content";
-import { slide } from "astro:transitions";
-import { BLOG_SITE_DESCRIPTION, BLOG_SITE_TITLE } from "../../config";
-import AstroLink from "../../components/AstroLink.astro";
+import { BLOG_SITE_URL } from '../../config';
 
-// 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog", ({ data }) => {
-    return data.draft !== true;
-  });
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
+  return [
+    "2020_07_02_23_53_01",
+    "2020_07_05_00_52_08",
+    "2020_07_06_23_44_01",
+    "2020_08_08_01_51_25",
+    "angular-froala-editor",
+    "angular-table-of-contents",
+    "cloud-functions-save-tweet",
+    "cloud-functions-youtube-api",
+    "github-flow-and-command",
+    "website-update-astro-v3"
+  ].map((slug) => ({
+    params: { slug },
   }));
 }
-// 2. When it's time to render, you can get the entry directly from the prop
-const { entry } = Astro.props;
-const { title, description, pubDate, updatedDate, heroImage = "" } = entry.data;
-const { Content } = await entry.render();
+
+const newURL = new URL(Astro.url.pathname.replace('blog', 'posts'), BLOG_SITE_URL).toString();
 ---
 
-<Layout title={title} description={description}>
-  <BlogHeader title={BLOG_SITE_TITLE} description={BLOG_SITE_DESCRIPTION} />
-  <main transition:animate={slide({ duration: '0.5s' })}>
-    <article class="article">
-      {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-      <h1 class="title" transition:name={"blog-title-" + entry.slug}>{title}</h1>
-      {
-        pubDate && (
-          <span class="pub-date" transition:name={"blog-pub-date-" + entry.slug}>
-            <time>
-              {new Date(pubDate).toLocaleDateString("ja-jp", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </time>
-            作成
-          </span>
-        )
-      }
-      {
-        updatedDate && (
-          <span class="updated-date">
-            <time>
-              {new Date(updatedDate).toLocaleDateString("ja-jp", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </time>
-            更新
-          </span>
-        )
-      }
-      <hr />
-      <Content />
-      <hr />
-      <AstroLink href="/blog/">
-        &gt; 一覧に戻る
-      </AstroLink>
-    </article>
-  </main>
-  <Footer />
-  <GoogleAnalytics />
-</Layout>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <p><a href={newURL}>{newURL}</a>に移動しました。</p>
+  </body>
+</html>
 
-<style lang="scss" is:global>
-  :root {
-    background-color: #fff;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    line-height: 1.5;
-    color: #333;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong,
-  b,
-  p {
-    color: #333;
-    margin: 12px 0;
-  }
-  textarea {
-    width: 100%;
-    font-size: 16px;
-  }
-  input {
-    font-size: 16px;
-  }
-  content {
-    line-height: 1.6;
-  }
-  table {
-    width: 100%;
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  code {
-    padding: 2px 5px;
-    background-color: #f2f2f2;
-  }
-  pre {
-    padding: 1rem;
-  }
-  pre > code {
-    all: unset;
-  }
-  blockquote {
-    border: 1px solid #999;
-    color: #222;
-    padding: 2px 0px 2px 20px;
-    margin: 0px;
-    font-style: italic;
-  }
-
-  .article {
-    margin: 12px auto;
-    max-width: 910px;
-    padding: 16px;
-
-    .title {
-      font-size: 28px;
-    }
-
-    .pub-date {
-      font-size: 14px;
-    }
-
-    .updated-date {
-      font-size: 14px;
-
-      &::before {
-        content: "/";
-      }
-    }
-
-    hr {
-      border-top: 1px solid #ddd;
-      margin: 16px 0;
-    }
-  }
-</style>
+<script>
+  import { BLOG_SITE_URL } from "../../config";
+  const path = window.location.pathname.replace("/blog", "/posts");
+  const newURL = new URL(path, BLOG_SITE_URL).toString();
+  window.location.href = newURL;
+</script>
