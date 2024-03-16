@@ -1,5 +1,7 @@
 ---
 import { BLOG_SITE_URL } from "../config";
+import ExternalLinkIcon from "../assets/external-link.svg";
+import { Image } from "astro:assets";
 
 const navNameList = ["Top", "Product", "Music", "Blog"];
 ---
@@ -13,6 +15,12 @@ const navNameList = ["Top", "Product", "Music", "Blog"];
             {navName === "Blog" ? 
               <a href={BLOG_SITE_URL} target="_blank" rel="noopener" class="nav-list__external-link">
                 {navName}
+                <Image
+                  src={ExternalLinkIcon}
+                  width={20}
+                  height={20}
+                  alt="外部リンク"
+                />
               </a>
             : 
               <a href={"#" + navName.toLowerCase()} class="nav-list__link">
