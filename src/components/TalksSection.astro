@@ -1,0 +1,119 @@
+---
+const talkList = [
+  {
+    title: "サンプル登壇タイトル1",
+    event: "イベント名1",
+    date: "2024-01-15",
+    slideUrl: "https://example.com/slides1",
+    description: "登壇内容の説明文がここに入ります",
+  },
+  {
+    title: "サンプル登壇タイトル2",
+    event: "イベント名2",
+    date: "2023-12-10",
+    slideUrl: "https://example.com/slides2",
+    description: "登壇内容の説明文がここに入ります",
+  },
+];
+---
+
+<div id="talks">
+  <div class="container">
+    <div class="heading">
+      <h2 class="heading__title">Talks</h2>
+    </div>
+    <div class="talks">
+      {
+        talkList.map((talk) => (
+          <a
+            href={talk.slideUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="talk-card"
+          >
+            <div class="talk-card__header">
+              <h3 class="talk-card__title">{talk.title}</h3>
+              <time class="talk-card__date">{talk.date}</time>
+            </div>
+            <p class="talk-card__event">{talk.event}</p>
+            <p class="talk-card__description">{talk.description}</p>
+            <span class="talk-card__link-text">スライドを見る →</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../styles/mixins.scss" as mx;
+
+  .talks {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .talk-card {
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 18px 45px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+    line-height: 1.5;
+    transition: 0.3s;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      box-shadow: 0 18px 45px 0 rgba(0, 0, 0, 0.24);
+    }
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      gap: 16px;
+      @include mx.sp {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+
+    &__title {
+      font-weight: bold;
+      font-size: 20px;
+      letter-spacing: 1.2px;
+      flex: 1;
+    }
+
+    &__date {
+      font-size: 14px;
+      color: #757575;
+      white-space: nowrap;
+    }
+
+    &__event {
+      font-size: 16px;
+      color: #f4511e;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    &__description {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #666;
+    }
+
+    &__link-text {
+      font-size: 14px;
+      color: #f4511e;
+      font-weight: bold;
+    }
+  }
+</style>
