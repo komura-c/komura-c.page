@@ -48,7 +48,7 @@ const navNameList = ["Top", "Product", "Music", "Blog"];
   }
 </script>
 
-<style lang="scss">
+<style>
   .header {
     position: sticky;
     top: 0;
@@ -71,21 +71,15 @@ const navNameList = ["Top", "Product", "Music", "Blog"];
     justify-content: space-around;
     list-style: none;
     padding: 0;
-    &__link {
-      color: #333;
-      text-decoration: none;
-      transition-duration: 0.3s;
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-    &__external-link {
-      color: #333;
-      text-decoration: none;
-      transition-duration: 0.3s;
-      &:hover {
-        opacity: 0.5;
-      }
-    }
+  }
+  .nav-list__link,
+  .nav-list__external-link {
+    color: #333;
+    text-decoration: none;
+    transition-duration: 0.3s;
+  }
+  .nav-list__link:hover,
+  .nav-list__external-link:hover {
+    opacity: 0.5;
   }
 </style>

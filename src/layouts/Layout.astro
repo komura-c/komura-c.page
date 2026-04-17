@@ -46,7 +46,7 @@ const { title, description, image = "" } = Astro.props;
   </body>
 </html>
 
-<style lang="scss" is:global>
+<style is:global>
   *,
   *::before,
   *::after {
@@ -65,10 +65,10 @@ const { title, description, image = "" } = Astro.props;
   a {
     text-decoration: none;
     color: #3273dc;
-    &:hover {
-      opacity: 0.6;
-      transition: all 0.4s ease;
-    }
+  }
+  a:hover {
+    opacity: 0.6;
+    transition: all 0.4s ease;
   }
 
   .container {
@@ -80,26 +80,26 @@ const { title, description, image = "" } = Astro.props;
   .heading {
     padding: 24px;
     text-align: center;
-    &__title {
-      position: relative;
-      font-size: 32px;
-      letter-spacing: 1.2px;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-      &::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: 0px;
-        width: 60px;
-        height: 5px;
-        transform: translateX(-50%);
-        background-color: #fbbf5d;
-        border-radius: 2px;
-      }
-    }
-    &__text {
-      letter-spacing: 1.2px;
-    }
+  }
+  .heading__title {
+    position: relative;
+    font-size: 32px;
+    letter-spacing: 1.2px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .heading__title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    width: 60px;
+    height: 5px;
+    transform: translateX(-50%);
+    background-color: #fbbf5d;
+    border-radius: 2px;
+  }
+  .heading__text {
+    letter-spacing: 1.2px;
   }
 </style>
