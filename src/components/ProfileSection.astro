@@ -87,24 +87,24 @@ const socialButtons = [
   </div>
 </div>
 
-<style lang="scss">
+<style>
   .bg-top {
     position: relative;
     background-color: #fbbf5d;
     height: 450px;
     padding-top: 8em;
     z-index: 1;
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 80%;
-      height: 50%;
-      background-color: #f4f4f7;
-      transform: skewY(-6deg);
-      z-index: -1;
-    }
+  }
+  .bg-top::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 80%;
+    height: 50%;
+    background-color: #f4f4f7;
+    transform: skewY(-6deg);
+    z-index: -1;
   }
 
   .profile-card {
@@ -116,83 +116,81 @@ const socialButtons = [
     align-items: center;
     box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.08);
     border-radius: 4px;
-    &__img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-    }
-    &__img-wrapper {
-      width: 150px;
-      height: 150px;
-      margin-top: -70px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(
-        -45deg,
-        rgb(255, 166, 73),
-        rgb(247, 100, 91),
-        rgb(128, 94, 212)
-      );
-      box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.08);
-    }
-    &__info {
-      padding: 16px;
-    }
-    &__name {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 16px;
-    }
-    &__description {
-      padding: 16px 24px;
-      background-color: #339af0;
-      color: #fff;
-      border-radius: 10px;
-      letter-spacing: 1.2px;
-      margin-bottom: 16px;
-      a {
-        color: #fff;
-        font-weight: bold;
-        text-decoration: underline;
-        transition-duration: 0.3s;
-        &:hover {
-          opacity: 0.5;
-        }
-      }
-    }
+  }
+  .profile-card__img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+  }
+  .profile-card__img-wrapper {
+    width: 150px;
+    height: 150px;
+    margin-top: -70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      -45deg,
+      rgb(255, 166, 73),
+      rgb(247, 100, 91),
+      rgb(128, 94, 212)
+    );
+    box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.08);
+  }
+  .profile-card__info {
+    padding: 16px;
+  }
+  .profile-card__name {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .profile-card__description {
+    padding: 16px 24px;
+    background-color: #339af0;
+    color: #fff;
+    border-radius: 10px;
+    letter-spacing: 1.2px;
+    margin-bottom: 16px;
+  }
+  .profile-card__description a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+    transition-duration: 0.3s;
+  }
+  .profile-card__description a:hover {
+    opacity: 0.5;
   }
 
   .social-buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    &__link {
-      width: 40px;
-      height: 40px;
-      margin-right: 12px;
-      transition-duration: 0.3s;
-      &:hover {
-        opacity: 0.5;
-      }
-      img {
-        width: 100%;
-        height: 100%;
-      }
-      &.x {
-        background-color: #000;
-        border-radius: 50%;
-        padding: 8px;
-      }
-      &.zenn {
-        padding: 2px;
-      }
-      &.soundcloud {
-        img {
-          border-radius: 50%;
-        }
-      }
-    }
+  }
+  .social-buttons__link {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    transition-duration: 0.3s;
+  }
+  .social-buttons__link:hover {
+    opacity: 0.5;
+  }
+  .social-buttons__link img {
+    width: 100%;
+    height: 100%;
+  }
+  .social-buttons__link.x {
+    background-color: #000;
+    border-radius: 50%;
+    padding: 8px;
+  }
+  .social-buttons__link.zenn {
+    padding: 2px;
+  }
+  .social-buttons__link.soundcloud img {
+    border-radius: 50%;
   }
 </style>
