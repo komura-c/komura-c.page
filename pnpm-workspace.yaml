@@ -3,6 +3,7 @@ packages: []
 onlyBuiltDependencies:
   - sharp
   - esbuild
+  - "@parcel/watcher"
 strictDepBuilds: true
 minimumReleaseAge: 4320
 blockExoticSubdeps: true
