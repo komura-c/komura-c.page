@@ -1,0 +1,106 @@
+---
+import Layout from "./Layout.astro";
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <main class="markdown">
+    <slot />
+  </main>
+</Layout>
+
+<style lang="scss" is:global>
+  .markdown {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    line-height: 1.75;
+    color: #333;
+
+    h1 {
+      font-size: 28px;
+      letter-spacing: 0.5px;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #fbbf5d;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    em {
+      color: #757575;
+      font-style: normal;
+      font-size: 14px;
+    }
+
+    ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    code {
+      background-color: #f4f4f7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 14px;
+      display: block;
+      overflow-x: auto;
+    }
+
+    thead {
+      background-color: #f4f4f7;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px 12px;
+      border: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    a {
+      color: #3273dc;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+</style>
